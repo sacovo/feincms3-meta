@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -26,11 +27,17 @@ class MetaMixin(models.Model):
         help_text=_("Set the Open Graph image."),
         formats={"recommended": ("default", ("crop", (1200, 630)))},
     )
+    meta_video_url = models.URLField(
+        _("video url"),
+        blank=True,
+        help_text=_("Set the Open Graph video to an url."),
+    )
     meta_video = models.FileField(
         _("video"),
         blank=True,
         upload_to="meta/video/%Y/%m",
         help_text=_("Set the Open Graph video."),
+        validators=[FileExtensionValidator(['mp4'])]
     )
     meta_video_width = models.IntegerField(
         _("video width"),
@@ -113,6 +120,12 @@ class MetaMixin(models.Model):
         if self.meta_video:
             return {
                 "video": self.meta_video.url,
+                "video:width": self.meta_video_width,
+                "video:height": self.meta_video_height,
+            }
+        if self.meta_video:
+            return {
+                "video": self.meta_video_url,
                 "video:width": self.meta_video_width,
                 "video:height": self.meta_video_height,
             }
