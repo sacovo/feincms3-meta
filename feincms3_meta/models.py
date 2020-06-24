@@ -28,25 +28,17 @@ class MetaMixin(models.Model):
         formats={"recommended": ("default", ("crop", (1200, 630)))},
     )
     meta_video_url = models.URLField(
-        _("video url"),
-        blank=True,
-        help_text=_("Set the Open Graph video to an url."),
+        _("video url"), blank=True, help_text=_("Set the Open Graph video to an url."),
     )
     meta_video = models.FileField(
         _("video"),
         blank=True,
         upload_to="meta/video/%Y/%m",
         help_text=_("Set the Open Graph video."),
-        validators=[FileExtensionValidator(['mp4'])]
+        validators=[FileExtensionValidator(["mp4"])],
     )
-    meta_video_width = models.IntegerField(
-        _("video width"),
-        default=1920,
-    )
-    meta_video_height = models.IntegerField(
-        _("video height"),
-        default=1080,
-    )
+    meta_video_width = models.IntegerField(_("video width"), default=1920,)
+    meta_video_height = models.IntegerField(_("video height"), default=1080,)
     meta_canonical = models.URLField(
         _("canonical URL"),
         blank=True,
