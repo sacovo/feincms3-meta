@@ -26,6 +26,20 @@ class MetaMixin(models.Model):
         help_text=_("Set the Open Graph image."),
         formats={"recommended": ("default", ("crop", (1200, 630)))},
     )
+    meta_video = models.FileField(
+        _("video"),
+        blank=True,
+        upload_to="meta/video/%Y/%m",
+        help_text=_("Set the Open Graph video."),
+    )
+    meta_video_width = models.IntegerField(
+        _("video width"),
+        default=1920,
+    )
+    meta_video_height = models.IntegerField(
+        _("video height"),
+        default=1080,
+    )
     meta_canonical = models.URLField(
         _("canonical URL"),
         blank=True,
@@ -55,6 +69,9 @@ class MetaMixin(models.Model):
                 "meta_description",
                 "meta_image",
                 "meta_image_ppoi",
+                "meta_video",
+                "meta_video_width",
+                "meta_video_height",
                 "meta_canonical",
                 "meta_author",
                 "meta_robots",
@@ -76,6 +93,7 @@ class MetaMixin(models.Model):
             "robots": self.meta_robots,
         }
         ctx.update(self.meta_images_dict())
+        ctx.update(self.meta_video_dict())
         return ctx
 
     def meta_images_dict(self):
@@ -90,3 +108,12 @@ class MetaMixin(models.Model):
             return {"image": self.image.url}
 
         return {"image": ""}
+
+    def meta_video_dict(self):
+        if self.meta_video:
+            return {
+                "video": self.meta_video.url,
+                "video:width": self.meta_video_width,
+                "video:height": self.meta_video_height,
+            }
+        return {}
