@@ -99,7 +99,7 @@ class MetaMixin(models.Model):
                 "meta_twitter_site",
                 "meta_card_type",
                 "meta_player",
-                "meta_video_width",
+                "meta_player_width",
                 "meta_player_height",
                 "meta_canonical",
                 "meta_author",
