@@ -42,6 +42,7 @@ class MetaMixin(models.Model):
     meta_card_type = models.CharField(
         _("twitter card type"),
         blank=True,
+        max_length=50,
         choices=(
             (_("summary"), "summary"),
             (_("summary large image"), "summary_large_image"),
