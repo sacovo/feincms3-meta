@@ -8,7 +8,7 @@ TEMPLATES = {
     "opengraph": '<meta property="{name}" content="{content}">',
     "meta": '<meta name="{name}" content="{content}">',
     "link": '<link rel="{name}" href="{content}">',
-    "twitter": '<meta name="{name}" content="{content}"',
+    "twitter": '<meta name="{name}" content="{content}">',
 }
 TAGS = [
     ("opengraph", "og:description", "description"),
