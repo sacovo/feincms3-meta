@@ -39,6 +39,30 @@ class MetaMixin(models.Model):
     )
     meta_video_width = models.IntegerField(_("video width"), default=1920,)
     meta_video_height = models.IntegerField(_("video height"), default=1080,)
+    meta_card_type = models.CharField(
+        _("twitter card type"),
+        blank=True,
+        choices=(
+            (_("summary"), "summary"),
+            (_("summary large image"), "summary_large_image"),
+            (_("player"), "player"),
+        ),
+        help_text=_("Card type"),
+    )
+    meta_twitter_site = models.CharField(
+        _("twitter site"),
+        blank=True,
+        max_length=30,
+        help_text=_("The Twitter @username the card should be attributed to."),
+    )
+    meta_player_width = models.IntegerField(_("player width"), default=1920,)
+    meta_player_height = models.IntegerField(_("player height"), default=1080,)
+    meta_player = models.CharField(
+        _("player url"),
+        blank=True,
+        max_length=600,
+        help_text=_("HTTPS URL to iFrame player."),
+    )
     meta_canonical = models.URLField(
         _("canonical URL"),
         blank=True,
@@ -71,6 +95,11 @@ class MetaMixin(models.Model):
                 "meta_video",
                 "meta_video_width",
                 "meta_video_height",
+                "meta_twitter_site",
+                "meta_card_type",
+                "meta_player",
+                "meta_video_width",
+                "meta_player_height",
                 "meta_canonical",
                 "meta_author",
                 "meta_robots",

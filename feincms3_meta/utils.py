@@ -8,6 +8,7 @@ TEMPLATES = {
     "opengraph": '<meta property="{name}" content="{content}">',
     "meta": '<meta name="{name}" content="{content}">',
     "link": '<link rel="{name}" href="{content}">',
+    "twitter": '<meta name="{name}" content="{content}"',
 }
 TAGS = [
     ("opengraph", "og:description", "description"),
@@ -21,6 +22,14 @@ TAGS = [
     ("opengraph", "og:title", "title"),
     ("opengraph", "og:type", "type"),
     ("opengraph", "og:url", "url"),
+    ("twitter", "twitter:card", "card_type"),
+    ("twitter", "twitter:title", "title"),
+    ("twitter", "tiwtter:site", "twitter_site"),
+    ("twitter", "twitter:description", "description"),
+    ("twitter", "twitter:player", "player"),
+    ("twitter", "twitter:player:width", "player_width"),
+    ("twitter", "twitter:player:height", "player_height"),
+    ("twitter", "twitter:image", "image"),
     ("meta", "description", "description"),
     ("meta", "author", "author"),
     ("meta", "robots", "robots"),
