@@ -120,9 +120,11 @@ class MetaMixin(models.Model):
             "url": self.meta_canonical,
             "author": self.meta_author,
             "robots": self.meta_robots,
+            "twitter_site": self.meta_twitter_site,
         }
         ctx.update(self.meta_images_dict())
         ctx.update(self.meta_video_dict())
+        ctx.update(self.meta_player_dict())
         return ctx
 
     def meta_images_dict(self):
@@ -137,6 +139,15 @@ class MetaMixin(models.Model):
             return {"image": self.image.url}
 
         return {"image": ""}
+
+    def meta_player_dict(self):
+        if self.meta_player:
+            return {
+                "player": self.meta_player,
+                "player_width": self.meta_player_width,
+                "player_height": self.meta_player_height,
+            }
+        return {}
 
     def meta_video_dict(self):
         if self.meta_video:
