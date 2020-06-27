@@ -146,6 +146,7 @@ class MetaMixin(models.Model):
                 "player": self.meta_player,
                 "player_width": self.meta_player_width,
                 "player_height": self.meta_player_height,
+                "card_type": "player",
             }
         return {}
 
