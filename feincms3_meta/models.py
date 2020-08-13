@@ -82,6 +82,10 @@ class MetaMixin(models.Model):
         help_text=_("Override the robots meta tag."),
     )
 
+    @property
+    def description(self):
+        return self.meta_description
+
     class Meta:
         abstract = True
 
@@ -113,7 +117,7 @@ class MetaMixin(models.Model):
     def meta_dict(self):
         ctx = {
             "title": self.meta_title or getattr(self, "title", ""),
-            "description": self.meta_description,
+            "description": self.description,
             "canonical": self.meta_canonical,
             # Override URL if canonical is set to a non-empty value (the empty
             # string will be skipped when merging this dictionary)
