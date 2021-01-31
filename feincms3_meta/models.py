@@ -52,9 +52,9 @@ class MetaMixin(models.Model):
         blank=True,
         max_length=50,
         choices=(
-            (_("summary"), "summary"),
-            (_("summary large image"), "summary_large_image"),
-            (_("player"), "player"),
+            ("summary", _("summary")),
+            ("summary_large_image", _("summary large image")),
+            ("player", "player"),
         ),
         help_text=_("Card type"),
     )
