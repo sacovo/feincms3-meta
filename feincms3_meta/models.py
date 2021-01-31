@@ -28,7 +28,9 @@ class MetaMixin(models.Model):
         formats={"recommended": ("default", ("crop", (1200, 630)))},
     )
     meta_video_url = models.URLField(
-        _("video url"), blank=True, help_text=_("Set the Open Graph video to an url."),
+        _("video url"),
+        blank=True,
+        help_text=_("Set the Open Graph video to an url."),
     )
     meta_video = models.FileField(
         _("video"),
@@ -37,8 +39,14 @@ class MetaMixin(models.Model):
         help_text=_("Set the Open Graph video."),
         validators=[FileExtensionValidator(["mp4"])],
     )
-    meta_video_width = models.IntegerField(_("video width"), default=1920,)
-    meta_video_height = models.IntegerField(_("video height"), default=1080,)
+    meta_video_width = models.IntegerField(
+        _("video width"),
+        default=1920,
+    )
+    meta_video_height = models.IntegerField(
+        _("video height"),
+        default=1080,
+    )
     meta_card_type = models.CharField(
         _("twitter card type"),
         blank=True,
@@ -56,8 +64,14 @@ class MetaMixin(models.Model):
         max_length=30,
         help_text=_("The Twitter @username the card should be attributed to."),
     )
-    meta_player_width = models.IntegerField(_("player width"), default=1920,)
-    meta_player_height = models.IntegerField(_("player height"), default=1080,)
+    meta_player_width = models.IntegerField(
+        _("player width"),
+        default=1920,
+    )
+    meta_player_height = models.IntegerField(
+        _("player height"),
+        default=1080,
+    )
     meta_player = models.CharField(
         _("player url"),
         blank=True,
@@ -109,7 +123,7 @@ class MetaMixin(models.Model):
                 "meta_author",
                 "meta_robots",
             ),
-            "classes": ("tabbed",),
+            "classes": ("tabbed", ),
         }
         cfg.update(kwargs)
         return (_("Meta tags"), cfg)
@@ -125,6 +139,7 @@ class MetaMixin(models.Model):
             "author": self.meta_author,
             "robots": self.meta_robots,
             "twitter_site": self.meta_twitter_site,
+            "card_type": self.meta_card_type,
         }
         ctx.update(self.meta_images_dict())
         ctx.update(self.meta_video_dict())
